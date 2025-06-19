@@ -18,6 +18,7 @@ public class ProdutoController {
 
     private final ProdutoService produtoService;
 
+
     @GetMapping("/lista")
     public List<ProdutoResponseDTO> listarTodos() {
         return produtoService.listarTodos();
