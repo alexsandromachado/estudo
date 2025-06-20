@@ -24,7 +24,7 @@ public class ConfiguracoesSeguranca {
     }
 
     @Bean
-    public SecurityFilterChain filtrosSeguranca(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filtrosSeguranca(HttpSecurity http, EmpresaFilter empresaFilter) throws Exception {
         return http
                 .authorizeHttpRequests(
                         req -> {
@@ -36,6 +36,7 @@ public class ConfiguracoesSeguranca {
                 .csrf(csrf -> csrf.disable())
                 .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
                 .addFilterBefore(filtroTokenAcesso, UsernamePasswordAuthenticationFilter.class)
+                .addFilterAfter(empresaFilter, FiltroTokenAcesso.class)
                 .build();
     }
 
