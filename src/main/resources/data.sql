@@ -1,3 +1,17 @@
+INSERT INTO role (nome) VALUES ('ADMIN');
+INSERT INTO role (nome) VALUES ('OPERADOR');
+
+
+INSERT INTO permissao (nome) VALUES ('CONSULTA-LISTA');
+INSERT INTO permissao (nome) VALUES ('DELETA-ITEM');
+
+INSERT INTO role_permissao (role_id, permissao_id) VALUES (1, 1);
+INSERT INTO role_permissao (role_id, permissao_id) VALUES (2, 1);
+--INSERT INTO role_permissao (role_id, permissao_id) VALUES (1, 2);
+
+--INSERT INTO usuario_role (role_id, usuario_id) VALUES (1, 1);
+
+
 INSERT INTO produto (nome, valor, descricao) VALUES ('Fone Bluetooth Pro', 249.90, 'Fone de ouvido sem fio com cancelamento de ruído');
 INSERT INTO produto (nome, valor, descricao) VALUES ('Teclado Mecânico RGB', 399.90, 'Teclado gamer mecânico com iluminação RGB');
 INSERT INTO produto (nome, valor, descricao) VALUES ('Monitor 27 Polegadas 4K', 1799.90, 'Monitor UHD 4K para trabalho e jogos');

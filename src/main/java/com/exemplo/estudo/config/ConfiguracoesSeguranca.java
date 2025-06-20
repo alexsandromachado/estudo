@@ -2,6 +2,7 @@ package com.exemplo.estudo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -28,6 +29,8 @@ public class ConfiguracoesSeguranca {
         return http
                 .authorizeHttpRequests(
                         req -> {
+                            req.requestMatchers("/api/produtos/lista").hasAuthority("CONSULTA-LISTA");
+                            req.requestMatchers(HttpMethod.DELETE, "/api/produtos/*").hasAuthority("DELETA-ITEM");
                             req.requestMatchers("/login", "/h2-console/**", "/usuarios/**", "/atualizar-token").permitAll();
                             req.anyRequest().authenticated();
                         }

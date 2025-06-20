@@ -7,20 +7,28 @@ import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.exemplo.estudo.entity.Usuario;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.List;
 
 @Service
 public class TokenService {
     public String gerarToken(Usuario usuario){
         try {
+
+            List<String> authorities = usuario.getAuthorities().stream()
+                    .map(GrantedAuthority::getAuthority)
+                    .toList();
+
             Algorithm algorithm = Algorithm.HMAC256("12345678");
             return JWT.create()
                     .withIssuer("estudo")
                     .withSubject(usuario.getUsername())
+                    .withClaim("authorities", authorities)
                     .withExpiresAt(expiracao(30))
                     .sign(algorithm);
         } catch (JWTCreationException exception){
@@ -59,5 +67,12 @@ public class TokenService {
 
     private Instant expiracao(Integer minutos) {
         return LocalDateTime.now().plusMinutes(minutos).toInstant(ZoneOffset.of("-03:00"));
+    }
+
+    public List<String> getAuthorities(String token) {
+        Algorithm algorithm = Algorithm.HMAC256("12345678");
+        JWTVerifier verifier = JWT.require(algorithm).withIssuer("estudo").build();
+        DecodedJWT decoded = verifier.verify(token);
+        return decoded.getClaim("authorities").asList(String.class);
     }
 }
