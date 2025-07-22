@@ -32,3 +32,33 @@ INSERT INTO produto (nome, valor, descricao) VALUES ('Gabinete Mid Tower', 399.0
 INSERT INTO produto (nome, valor, descricao) VALUES ('Headset Gamer Surround', 499.90, 'Fone gamer com som 7.1 e microfone');
 INSERT INTO produto (nome, valor, descricao) VALUES ('Controle Sem Fio', 299.90, 'Controle compatível com PC e consoles');
 INSERT INTO produto (nome, valor, descricao) VALUES ('Carregador Portátil 20000mAh', 189.90, 'Power Bank de alta capacidade');
+
+INSERT INTO categoria (id, nome) VALUES
+(1, 'Acessórios'),
+(2, 'Periféricos'),
+(3, 'Computadores e Notebooks'),
+(4, 'Smartphones e Tablets'),
+(5, 'Componentes de PC');
+
+INSERT INTO produto_categoria (produto_id, categoria_id) VALUES
+(1, 1),   -- Fone Bluetooth → Acessórios
+(2, 2),   -- Teclado → Periféricos
+(3, 2),   -- Monitor → Periféricos
+(3, 3),   -- Monitor → Computadores
+(4, 2),   -- Mouse Gamer → Periféricos
+(5, 2),   -- Cadeira Gamer → Periféricos
+(6, 3),   -- Notebook → Computadores
+(7, 4),   -- Smartphone → Smartphones
+(8, 4),   -- Tablet → Tablets
+(9, 2),   -- Impressora → Periféricos
+(10, 1),  -- Caixa de som → Acessórios
+(11, 1),  -- HD externo → Acessórios
+(12, 5),  -- SSD → Componentes
+(13, 1),  -- Webcam → Acessórios
+(14, 1),  -- Microfone → Acessórios
+(15, 5),  -- Placa de vídeo → Componentes
+(16, 5),  -- Fonte → Componentes
+(17, 5),  -- Gabinete → Componentes
+(18, 1),  -- Headset gamer → Acessórios
+(19, 1),  -- Controle sem fio → Acessórios
+(20, 1);  -- Carregador portátil → Acessórios

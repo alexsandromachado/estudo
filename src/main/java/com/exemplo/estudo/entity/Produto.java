@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "produto")
@@ -18,6 +19,14 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToMany
+    @JoinTable(
+            name = "produto_categoria",
+            joinColumns = @JoinColumn(name = "produto_id"),
+            inverseJoinColumns = @JoinColumn(name = "categoria_id")
+    )
+    private List<Categoria> categorias;
+
     @Column(nullable = false, length = 150)
     private String nome;
 
@@ -26,6 +35,5 @@ public class Produto {
 
     @Column(length = 500)
     private String descricao;
-
 
 }
