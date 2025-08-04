@@ -66,4 +66,11 @@ public class ProdutoService {
         return produtoRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Produto não encontrado com ID: " + id));
     }
+
+    public List<ProdutoResponseDTO> listarOrdenado() {
+        return produtoRepository.findOrdenado()
+                .stream()
+                .map(ProdutoResponseDTO::new)
+                .toList();
+    }
 }

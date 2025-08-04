@@ -31,7 +31,7 @@ public class ConfiguracoesSeguranca {
                         req -> {
                             req.requestMatchers("/api/produtos/lista").hasAuthority("CONSULTA-LISTA");
                             req.requestMatchers(HttpMethod.DELETE, "/api/produtos/*").hasAuthority("DELETA-ITEM");
-                            req.requestMatchers("/login", "/h2-console/**", "/usuarios/**", "/atualizar-token").permitAll();
+                            req.requestMatchers("/login", "/h2-console/**", "/usuarios/**", "/atualizar-token", "/categorias/**", "/api/produtos/exercicio").permitAll();
                             req.anyRequest().authenticated();
                         }
                 )

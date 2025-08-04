@@ -18,6 +18,10 @@ public class ProdutoController {
 
     private final ProdutoService produtoService;
 
+    @GetMapping("/exercicio")
+    public List<ProdutoResponseDTO> listarOrdenado() {
+        return produtoService.listarOrdenado();
+    }
 
     @GetMapping("/lista")
     public List<ProdutoResponseDTO> listarTodos() {
@@ -43,7 +47,6 @@ public class ProdutoController {
     public ProdutoResponseDTO atualizar(@PathVariable Long id, @RequestBody ProdutoRequestDTO dto) {
         return produtoService.atualizar(id, dto);
     }
-
 
     @DeleteMapping("/{id}")
     public void deletar(@PathVariable Long id) {
